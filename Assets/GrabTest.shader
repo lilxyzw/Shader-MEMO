@@ -57,27 +57,27 @@
             struct appdata
             {
                 float4 vertex : POSITION;
-				UNITY_VERTEX_INPUT_INSTANCE_ID  // Single Pass Instanced対応用
+                UNITY_VERTEX_INPUT_INSTANCE_ID  // Single Pass Instanced対応用
             };
 
             struct v2f
             {
                 float4 ScreenPos : TEXCOORD0;
                 float4 GrabScreenPos : TEXCOORD1;
-				UNITY_VERTEX_INPUT_INSTANCE_ID  // Single Pass Instanced対応用
-				UNITY_VERTEX_OUTPUT_STEREO      // Single Pass Instanced対応用
+                UNITY_VERTEX_INPUT_INSTANCE_ID  // Single Pass Instanced対応用
+                UNITY_VERTEX_OUTPUT_STEREO      // Single Pass Instanced対応用
             };
 
             // 頂点シェーダー
             v2f vert(appdata v, out float4 vertex : SV_POSITION)
             {
                 v2f o;
-				UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
 
                 // Single Pass Instanced対応用
-				UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_TRANSFER_INSTANCE_ID(v, o);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
                 // 行列計算
                 vertex = UnityObjectToClipPos(v.vertex);
@@ -95,8 +95,8 @@
             // UNITY_VPOS_TYPEも現在はfloat4固定 (D3D9時代にfloat2が使われていた)
             float4 frag(v2f i, UNITY_VPOS_TYPE vpos : VPOS) : SV_Target
             {
-				UNITY_SETUP_INSTANCE_ID(i);
-				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                UNITY_SETUP_INSTANCE_ID(i);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
                 // 画面座標の計算
                 // 屈折を扱う場合に注意すべきポイントですが、Single Pass Stereoでは左右の目の映像を一枚のテクスチャにまとめているためUVの操作で隣の目の映像にはみ出す場合があります。
