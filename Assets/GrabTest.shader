@@ -4,7 +4,9 @@
     {
         Tags {"RenderType"="Transparent" "Queue"="Transparent"}
 
+        // テクスチャ名を指定することで複数シェーダー間でGrabPassをまとめられる
         GrabPass {"_BackgroundTexture"}
+
         Pass
         {
             CGPROGRAM
@@ -96,7 +98,7 @@
 
                 // スクリーン座標の計算
                 // _ProjectionParams.xを用いるかUNITY_UV_STARTS_AT_TOPマクロを用いるかという違いがある
-                // 基本的には同じ結果になるが、カメラが複数ある場合などで_ProjectionParams.xの値が不安定になるように見える
+                // 基本的には同じ結果になるが、_ProjectionParams.xの値が不安定になる場合がある
                 o.ScreenPos = ComputeScreenPos(vertex);
                 o.GrabScreenPos = ComputeGrabScreenPos(vertex);
                 return o;
@@ -108,6 +110,7 @@
             // UNITY_VPOS_TYPEも現在はfloat4固定 (D3D9時代にfloat2が使われていた)
             float4 frag(v2f i, UNITY_VPOS_TYPE vpos : VPOS) : SV_Target
             {
+                // Single Pass Instanced対応用
                 UNITY_SETUP_INSTANCE_ID(i);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 

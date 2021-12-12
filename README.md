@@ -4,7 +4,8 @@ VR対応やSRPへの対応、その他ハマりやすい部分などを残して
 
 ## [GrabTest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/GrabTest.shader)
 VRでGrabPassを扱う際に壊れやすい部分をまとめています。  
-シェーダー内のマクロを書き換えることで動作検証できます。
+シェーダー内のマクロを書き換えることで動作検証できます。  
+既存のシェーダーを修正する場合は以下の通りです。
 - 特定の条件下で上下が逆になる  
   `ComputeScreenPos()`を`ComputeGrabScreenPos()`に置き換えることで改善されます
 - 片目に両目の映像が映る  
