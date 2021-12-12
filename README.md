@@ -11,9 +11,9 @@ VRでGrabPassを扱う際に壊れやすい部分をまとめています。
   UNITY_SINGLE_PASS_STEREOが宣言されているときにUV座標をx軸方向に0.5倍する必要があります。  
   修正例は以下の通り
   ```
-    #if defined(UNITY_SINGLE_PASS_STEREO)
-        uv.x *= 0.5;
-    #endif
+  #if defined(UNITY_SINGLE_PASS_STEREO)
+      uv.x *= 0.5;
+  #endif
   ```
 - Unity 2020以降から灰色になる  
   テクスチャを宣言している箇所を`UNITY_DECLARE_SCREENSPACE_TEXTURE(tex)`、サンプリングしている箇所を`UNITY_SAMPLE_SCREENSPACE_TEXTURE(tex,uv)`に置き換えることで改善されます。
