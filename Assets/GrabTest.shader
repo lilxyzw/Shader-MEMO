@@ -13,6 +13,8 @@
             #pragma fragment frag
             #include "UnityCG.cginc"
 
+            //----------------------------------------------------------------------------------------------------------------------
+            // テクスチャの型
             #if 1
                 // UNITY_STEREO_INSTANCING_ENABLED または UNITY_STEREO_MULTIVIEW_ENABLED が宣言されているとテクスチャ配列化される
                 #define DECLARE_GRABTEX(tex)     UNITY_DECLARE_SCREENSPACE_TEXTURE(tex)
@@ -24,23 +26,28 @@
                 #define SAMPLE_GRABTEX(tex,uv)   UNITY_SAMPLE_TEX2D(tex,uv)
             #endif
 
-            // 左目・右目の映像が1枚にまとまっているため、そのままVPOSを使うのではなくx座標を0.5倍する必要あり
+            //----------------------------------------------------------------------------------------------------------------------
+            // UVの計算
             #define GRAB_TEXTURE_TYPE 3
+
             #if GRAB_TEXTURE_TYPE == 0
                 // _ProjectionParams.xの値の異常で壊れるパターン (https://feedback.vrchat.com/bug-reports/p/incorrect-rendering-issue-with-my-shader)
                 // ComputeScreenPos()で計算
                 // 上限反転するか否かを _ProjectionParams.x で決める
                 // しかしこの値が不安定で、VRC Scene DescriptorのReference Cameraを適切に指定してやらないと上下逆の映像になってしまうことがある
                 #define CALC_GRABUV(uv) float2 uv = i.ScreenPos.xy / i.ScreenPos.w
+
             #elif GRAB_TEXTURE_TYPE == 1
                 // ComputeGrabScreenPos()で計算
                 // 上限反転するか否かを UNITY_UV_STARTS_AT_TOP で決める
                 #define CALC_GRABUV(uv) float2 uv = i.GrabScreenPos.xy / i.GrabScreenPos.w
+
             #elif GRAB_TEXTURE_TYPE == 2
                 // Single Pass Stereo (VRChat)で壊れるパターン (https://docs.unity3d.com/ja/2019.4/Manual/SinglePassStereoRendering.html)
                 // VPOSを元に計算
                 // 左目・右目の映像が1枚にまとまっているため、そのままVPOSを使うのではなくx座標を0.5倍する必要あり
                 #define CALC_GRABUV(uv) float2 uv = vpos.xy / _ScreenParams.xy
+
             #elif GRAB_TEXTURE_TYPE == 3
                 // VPOSを元に計算
                 // Single Pass Stereo用にVPOSに補正を加えたもの
@@ -51,9 +58,13 @@
                 #endif
             #endif
 
+            //----------------------------------------------------------------------------------------------------------------------
             // GrabPassのテクスチャ
             DECLARE_GRABTEX(_BackgroundTexture);
 
+            //----------------------------------------------------------------------------------------------------------------------
+            // appdata / v2f構造体
+            // Single Pass Instancedに対応させるにはメンバの追加が必要 (https://docs.unity3d.com/ja/2021.2/Manual/SinglePassInstancing.html)
             struct appdata
             {
                 float4 vertex : POSITION;
@@ -68,6 +79,7 @@
                 UNITY_VERTEX_OUTPUT_STEREO      // Single Pass Instanced対応用
             };
 
+            //----------------------------------------------------------------------------------------------------------------------
             // 頂点シェーダー
             v2f vert(appdata v, out float4 vertex : SV_POSITION)
             {
@@ -83,13 +95,14 @@
                 vertex = UnityObjectToClipPos(v.vertex);
 
                 // スクリーン座標の計算
-                // UNITY_UV_STARTS_AT_TOPマクロを用いるか_ProjectionParams.xを用いるかという違いがある
-                // 基本的には同じ結果になる
+                // _ProjectionParams.xを用いるかUNITY_UV_STARTS_AT_TOPマクロを用いるかという違いがある
+                // 基本的には同じ結果になるが、カメラが複数ある場合などで_ProjectionParams.xの値が不安定になるように見える
                 o.ScreenPos = ComputeScreenPos(vertex);
                 o.GrabScreenPos = ComputeGrabScreenPos(vertex);
                 return o;
             }
 
+            //----------------------------------------------------------------------------------------------------------------------
             // フラグメントシェーダー
             // VPOSは基本的にSV_POSITIONと同じっぽい
             // UNITY_VPOS_TYPEも現在はfloat4固定 (D3D9時代にfloat2が使われていた)
