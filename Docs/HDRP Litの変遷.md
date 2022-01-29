@@ -11,6 +11,7 @@ lilToonの開発に関わった部分のみメモ
 - `ShadowCaster`
 - `MotionVectors`
 - `Meta`
+
 アウトラインなどマルチパスしたい場合は`SRPDefaultUnlit`を利用可能。
 `SceneSelectionPass`、`Picking`、`DistortionVectors`は任意で実装で良さそう。
 レイトレーシングはトゥーンシェーダーとの親和性が悪そうなのでUnlitにフォールバックするといいかもしれない。

@@ -14,6 +14,7 @@ DOTS Instancing対応・非対応でSubShaderを分ける必要あり。
 - `DepthNormals`
 - `Meta`
 - `Universal2D`
+
 アウトラインなどマルチパスしたい場合は`SRPDefaultUnlit`を利用可能。
 9.x.x以前は`_MIXED_LIGHTING_SUBTRACTIVE`というキーワードが使われていたので対応させたい場合は追加が必要。（ライトマップ用）
 
