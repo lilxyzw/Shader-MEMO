@@ -4,18 +4,18 @@ lilToonの開発に関わった部分のみメモ
 コンパイルエラー対策のマクロは[lil_common_macro.hlsl](https://github.com/lilxyzw/lilToon/blob/master/Assets/lilToon/Shader/Includes/lil_common_macro.hlsl)を参照
 
 ## 要約
-SubShaderのTagsは`"RenderPipeline" = "UniversalPipeline"`とする。
-DOTS Instancing対応・非対応でSubShaderを分ける必要あり。
-トゥーンシェーダーとして実装するならForwardレンダリング、つまり`UniversalGBuffer`は不要。
+SubShaderのTagsは`"RenderPipeline" = "UniversalPipeline"`。  
+DOTS Instancing対応・非対応でSubShaderを分ける必要あり。  
+トゥーンシェーダーとして実装するならForwardレンダリングなので、基本的に`UniversalGBuffer`は不要。  
 必要なLightModeをまとめると以下の通り
 - `UniversalForward`
 - `ShadowCaster`
 - `DepthOnly`
 - `DepthNormals`
 - `Meta`
-- `Universal2D`
 
-アウトラインなどマルチパスしたい場合は`SRPDefaultUnlit`を利用可能。
+アウトラインなどマルチパスしたい場合は`SRPDefaultUnlit`を利用可能。  
+`Universal2D`は任意で追加。  
 9.x.x以前は`_MIXED_LIGHTING_SUBTRACTIVE`というキーワードが使われていたので対応させたい場合は追加が必要。（ライトマップ用）
 
 ## [LightweightRP]

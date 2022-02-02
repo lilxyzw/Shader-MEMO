@@ -4,7 +4,7 @@ lilToonの開発に関わった部分のみメモ
 コンパイルエラー対策のマクロは[lil_common_macro.hlsl](https://github.com/lilxyzw/lilToon/blob/master/Assets/lilToon/Shader/Includes/lil_common_macro.hlsl)を参照
 
 ## 要約
-トゥーンシェーダーとして実装するならForwardレンダリング、つまり`DepthForwardOnly`、`ForwardOnly`を使用すれば良い。
+トゥーンシェーダーとして実装するならForwardレンダリング、つまり`DepthForwardOnly`、`ForwardOnly`を使用すれば良い。  
 必要なLightModeをまとめると以下の通り
 - `ForwardOnly`
 - `DepthForwardOnly`
@@ -12,8 +12,8 @@ lilToonの開発に関わった部分のみメモ
 - `MotionVectors`
 - `Meta`
 
-アウトラインなどマルチパスしたい場合は`SRPDefaultUnlit`を利用可能。
-`SceneSelectionPass`、`Picking`、`DistortionVectors`は任意で実装で良さそう。
+アウトラインなどマルチパスしたい場合は`SRPDefaultUnlit`を利用可能。  
+`SceneSelectionPass`、`Picking`、`DistortionVectors`は任意で実装で良さそう。  
 レイトレーシングはトゥーンシェーダーとの親和性が悪そうなのでUnlitにフォールバックするといいかもしれない。
 
 ## [4.x.x]
