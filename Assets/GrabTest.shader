@@ -60,6 +60,8 @@
                 #endif
             #endif
 
+            // URPでは _ScreenParams の代わりに _ScaledScreenParams を使う
+
             //----------------------------------------------------------------------------------------------------------------------
             // GrabPassのテクスチャ
             DECLARE_GRABTEX(_BackgroundTexture);
