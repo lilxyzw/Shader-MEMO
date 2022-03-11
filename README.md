@@ -58,3 +58,6 @@ SHライトの挙動や原理確認用のシェーダーです。
 
 ## [ステンシルについて.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/ステンシルについて.md)
 ステンシルについての簡単な解説です。
+
+## [SPSITest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/SPSITest.shader)
+SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
