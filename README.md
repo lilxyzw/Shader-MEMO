@@ -61,3 +61,10 @@ SHライトの挙動や原理確認用のシェーダーです。
 
 ## [SPSITest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/SPSITest.shader)
 SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
+
+## [84-Shader__VR Unlit Shader-NewUnlitShader.shader.txt](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/ScriptTemplates/84-Shader__VR%20Unlit%20Shader-NewUnlitShader.shader.txt)
+新規作成したUnlit ShaderはSPS-I環境ではうまく動作せず書き換えが必要になります。そこで、SPS-I対応済みのUnlit Shaderのテンプレートを作りました。以下の手順で導入できます。
+1. `Assets`直下に`ScriptTemplates`フォルダを作成
+2. `ScriptTemplates`内にこのtxtファイルを配置
+3. Unityを再起動
+4. `Create - Shader - VR Unlit Shader`でこのテンプレートから作成可能になる
