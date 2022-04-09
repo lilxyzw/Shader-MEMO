@@ -68,3 +68,6 @@ SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
 2. `ScriptTemplates`内にこのtxtファイルを配置
 3. Unityを再起動
 4. `Create - Shader - VR Unlit Shader`でこのテンプレートから作成可能になる
+
+## [StencilChecker.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/StencilChecker.shader)
+ステンシルバッファを可視化します。
