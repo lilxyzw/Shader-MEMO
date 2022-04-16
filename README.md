@@ -71,3 +71,6 @@ SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
 
 ## [StencilChecker.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/StencilChecker.shader)
 ステンシルバッファを可視化します。
+
+## [DepthTex2PosWS.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/DepthTex2PosWS.shader)
+`_CameraDepthTexture`と`SV_POSITION`からワールド座標を復元するシェーダーです。
