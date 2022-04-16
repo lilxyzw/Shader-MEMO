@@ -2,7 +2,7 @@
 Unityでのシェーダー開発に関するメモです。
 VR対応やSRPへの対応、その他ハマりやすい部分などを残しておきます。
 
-## [GrabTest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/GrabTest.shader)
+## [GrabTest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/GrabTest.shader)
 VRでGrabPassを扱う際に壊れやすい部分をまとめています。  
 シェーダー内のマクロを書き換えることで動作検証できます。  
 既存のシェーダーを修正する場合は以下の通りです。
@@ -25,12 +25,12 @@ URP/HDRPのシェーダーを書けることが前提で、複数バージョン
 流石に細かい変数・関数の変化までは追いきれておらず、シェーダーキーワードやLightModeなどざっくりした部分のみのまとめなので、各バージョンでテストしてエラーや不具合が出たらマクロで切り分ける必要があります。  
 バージョンは`VERSION_GREATER_EQUAL(major, minor)`などのマクロで取れます。
 
-## [SHLightTester.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/SHLightTester.shader)
+## [SHLightTester.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/SHLightTester.shader)
 SHライトの挙動や原理確認用のシェーダーです。  
 通常はShadeSH9に法線を渡すだけで良いため詳しく理解する必要がないですが、トゥーンシェーダーではSHライトの陰影を付けたくない場合が多いためそのまま扱えません。  
 そこで原理を知っておくことでSHライトをどうデフォルメするかを考える材料になるかもしれません。
 
-## [GeomTest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/GeomTest.shader)
+## [GeomTest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/GeomTest.shader)
 ジオメトリシェーダーを使って1パスでアウトラインを描画したら逆に負荷が高くなったので色々テストしてみたシェーダーです。  
 結論としては本体->アウトラインの順に描画していたためZTestが効き、アウトライン側のピクセルシェーダーの負荷が抑えられたことが大きそうでした。  
 ここではGPU負荷のみ検証しているのと、（特にモバイルでは）環境による差がある可能性もあるため、実際の環境でテストして確認してください。  
@@ -59,7 +59,7 @@ SHライトの挙動や原理確認用のシェーダーです。
 ## [ステンシルについて.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/ステンシルについて.md)
 ステンシルについての簡単な解説です。
 
-## [SPSITest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/SPSITest.shader)
+## [SPSITest.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/SPSITest.shader)
 SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
 
 ## [84-Shader__VR Unlit Shader-NewUnlitShader.shader.txt](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/ScriptTemplates/84-Shader__VR%20Unlit%20Shader-NewUnlitShader.shader.txt)
@@ -69,8 +69,8 @@ SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
 3. Unityを再起動
 4. `Create - Shader - VR Unlit Shader`でこのテンプレートから作成可能になる
 
-## [StencilChecker.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/StencilChecker.shader)
+## [StencilChecker.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/StencilChecker.shader)
 ステンシルバッファを可視化します。
 
-## [DepthTex2PosWS.shader](https://github.com/lilxyzw/Shader-MEMO/blob/master/Assets/DepthTex2PosWS.shader)
+## [DepthTex2PosWS.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/DepthTex2PosWS.shader)
 `_CameraDepthTexture`と`SV_POSITION`からワールド座標を復元するシェーダーです。
