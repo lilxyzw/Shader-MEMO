@@ -16,11 +16,14 @@ VRでGrabPassを扱う際に壊れやすい部分をまとめています。シ�
 - Unity 2020以降から灰色になる  
   テクスチャを宣言している箇所を`UNITY_DECLARE_SCREENSPACE_TEXTURE(tex)`、サンプリングしている箇所を`UNITY_SAMPLE_SCREENSPACE_TEXTURE(tex,uv)`に置き換えることで改善されます。
 
-## [ビルトインシェーダーの変遷.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/%E3%83%93%E3%83%AB%E3%83%88%E3%82%A4%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%81%AE%E5%A4%89%E9%81%B7.md)
+## [ビルトインシェーダーの変遷.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/ビルトインシェーダーの変遷.md)
 [Unity download archive](https://unity3d.com/get-unity/download/archive)の`Built in shaders`の変遷をまとめました。
 
-## [Universal Render Pipeline Litの変遷.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/Universal%20Render%20Pipeline%20Lit%E3%81%AE%E5%A4%89%E9%81%B7.md) / [HDRP Litの変遷.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/HDRP%20Lit%E3%81%AE%E5%A4%89%E9%81%B7.md)
+## [Universal Render Pipeline Litの変遷.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/Universal%20Render%20Pipeline%20Litの変遷.md) / [HDRP Litの変遷.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/HDRP%20Litの変遷.md)
 lilToonの開発に関わった箇所をまとめました。URP/HDRPのシェーダーを書けることが前提で、複数バージョンに対応させる際の資料です。流石に細かい変数・関数の変化までは追いきれておらず、シェーダーキーワードやLightModeなどざっくりした部分のみのまとめなので、各バージョンでテストしてエラーや不具合が出たらマクロで切り分ける必要があります。バージョンは`VERSION_GREATER_EQUAL(major, minor)`などのマクロで取れます。
+
+## [SRPでのマルチパスシェーダー.md](https://github.com/lilxyzw/Shader-MEMO/blob/main/Docs/SRPでのマルチパスシェーダー.md)
+SRPではマルチパスシェーダーの作成に制限がありますが、シェーダーのLightModeタグを複数組み合わせることでパイプラインの改造無しで擬似的に作成できます。
 
 ## [SHLightTester.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/SHLightTester.shader)
 SHライトの挙動や原理確認用のシェーダーです。通常はShadeSH9に法線を渡すだけで良いため詳しく理解する必要がないですが、トゥーンシェーダーではSHライトの陰影を付けたくない場合が多いためそのまま扱えません。そこで原理を知っておくことでSHライトをどうデフォルメするかを考える材料になるかもしれません。
