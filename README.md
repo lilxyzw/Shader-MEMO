@@ -68,3 +68,6 @@ SPS-I（Single-Pass Stereo Instanced）対応についてまとめました。
 
 ## [DepthTex2PosWS.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/DepthTex2PosWS.shader)
 `_CameraDepthTexture`と`SV_POSITION`からワールド座標を復元するシェーダーです。
+
+## [CustomSampler.shader](https://github.com/lilxyzw/Shader-MEMO/blob/main/Assets/CustomSampler.shader)
+`Texture2D.Sample()`を再実装したものです。
